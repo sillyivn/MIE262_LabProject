@@ -1,0 +1,10 @@
+data;
+
+read table ShoeTable;
+read table MachineTable;
+read 
+
+
+table ShoeTable IN "CSV" "Product.Master.csv":
+	SHOE_TYPE <- Product_Num;
+	
