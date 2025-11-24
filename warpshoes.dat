@@ -4,7 +4,7 @@ table Shoe_Table "CSV" "Product_Master.csv":
     PRODUCT <- [Product_Num], S ~ Sales_Price;
 read table Shoe_Table;
 
-table Product_Demand "CSV" "Product_Demand.csv":
+table Product_Demand "CSV" "Lab - Clean Forecasted Demand":
     [Product_Num], D ~ Annual_Demand;
 read table Product_Demand;
 
