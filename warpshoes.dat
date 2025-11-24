@@ -1,10 +1,29 @@
-data;
+# Read each relevant table into sets and parameters
 
-read table ShoeTable;
-read table MachineTable;
-read 
+table Product_Master "CSV" "Product_Master.csv":
+    PRODUCT <- [Product_Num], S ~ Sales_Price;
+read table Product_Master;
 
+table Product_Demand "CSV" "Product_Demand.csv":
+    [Product_Num], D ~ Annual_Demand;
+read table Product_Demand;
 
-table ShoeTable IN "CSV" "Product.Master.csv":
-	SHOE_TYPE <- Product_Num;
-	
+table Machine_Master "CSV" "Machine_Master.csv":
+    MACHINE <- [Machine_Num], c_m ~ OpCost_per_min;
+read table Machine_Master;
+
+table Machine_Assign "CSV" "Machine_Assign.csv":
+    [Product_Num, Machine_Num], t ~ Avg_Duration;
+read table Machine_Assign;
+
+table RM_Master "CSV" "RM_Master.csv":
+    RAW_MATERIAL <- [RM_Num], c_r ~ Cost, Q ~ S_Quantity;
+read table RM_Master;
+
+table BOM "CSV" "BOM.csv":
+    [Product_Num, RM_Num], q ~ Quantity;
+read table BOM;
+
+table Warehouse_Master "CSV" "Warehouse_Master.csv":
+    LOCATION <- [Warehouse_Num], W ~ Capacity, c_l ~ Op_Cost;
+read table Warehouse_Master;
