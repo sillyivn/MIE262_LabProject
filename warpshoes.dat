@@ -1,8 +1,8 @@
 # Read each relevant table into sets and parameters
 
-table Product_Master "CSV" "Product_Master.csv":
+table Shoe_Table "CSV" "Product_Master.csv":
     PRODUCT <- [Product_Num], S ~ Sales_Price;
-read table Product_Master;
+read table Shoe_Table;
 
 table Product_Demand "CSV" "Product_Demand.csv":
     [Product_Num], D ~ Annual_Demand;
@@ -27,3 +27,4 @@ read table BOM;
 table Warehouse_Master "CSV" "Warehouse_Master.csv":
     LOCATION <- [Warehouse_Num], W ~ Capacity, c_l ~ Op_Cost;
 read table Warehouse_Master;
+	
