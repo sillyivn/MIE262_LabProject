@@ -1,30 +1,36 @@
 # Read each relevant table into sets and parameters
 
+# [] represents the column you treat as an index 
+# _ ~ ___ represents the values at each index 
+
 table Shoe_Table "CSV" "Product_Master.csv":
-    PRODUCT <- [Product_Num], S ~ Sales_Price;
+    SHOE_TYPE <- [Product_Num], S ~ Sales_Price;
 read table Shoe_Table;
 
-table Product_Demand "CSV" "Lab - Clean Forecasted Demand":
-    [Product_Num], D ~ Annual_Demand;
-read table Product_Demand;
-
 table Machine_Master "CSV" "Machine_Master.csv":
-    MACHINE <- [Machine_Num], c_m ~ OpCost_per_min;
+    MACHINE_TYPE <- [Machine_Num], c_m ~ OpCost_per_min;
 read table Machine_Master;
+
+table RM_Master "CSV" "RM_Master.csv":
+    RAW_MATERIAL_TYPE <- [RM_Num], c_r ~ Cost, Q ~ S_Quantity;
+read table RM_Master;
+
+# Import overall forecasted demand for each store
+table Product_Demand "CSV" "Lab - Clean Forecasted Demand":
+    [Product_Num], D ~ Annual_Demand; # Indices already created for Product_Num
+read table Product_Demand;
+	
 
 table Machine_Assign "CSV" "Machine_Assign.csv":
     [Product_Num, Machine_Num], t ~ Avg_Duration;
 read table Machine_Assign;
 
-table RM_Master "CSV" "RM_Master.csv":
-    RAW_MATERIAL <- [RM_Num], c_r ~ Cost, Q ~ S_Quantity;
-read table RM_Master;
 
 table BOM "CSV" "BOM.csv":
     [Product_Num, RM_Num], q ~ Quantity;
 read table BOM;
 
 table Warehouse_Master "CSV" "Warehouse_Master.csv":
-    LOCATION <- [Warehouse_Num], W ~ Capacity, c_l ~ Op_Cost;
+    WAREHOUSE_TYPE <- [Warehouse_Num], W ~ Capacity, c_l ~ Op_Cost;
 read table Warehouse_Master;
 	
