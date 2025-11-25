@@ -20,11 +20,9 @@ table Product_Demand "CSV" "Lab - Clean Forecasted Demand":
     [Product_Num], D ~ Total shoe demand; # Indices already created for Product_Num
 read table Product_Demand;
 	
-
 table Machine_Assign "CSV" "Machine_Assign.csv":
     [Product_Num, Machine_Num], t ~ Avg_Duration;
 read table Machine_Assign;
-
 
 table BOM "CSV" "BOM.csv":
     [Product_Num, RM_Num], q ~ Quantity; # Indices already created for Product_Num and RM_Num
