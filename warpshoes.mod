@@ -1,11 +1,10 @@
-# Indices for shoes, machines, raw materials, and warehouses
+# Indices for shoes, machines, raw materials, and warehou
 set SHOE_TYPE;
 set MACHINE_TYPE;
 set RAW_MATERIAL_TYPE; 
 set WAREHOUSE_TYPE;
 
 param shoe;
-
 	
 	
 

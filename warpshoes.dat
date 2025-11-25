@@ -17,7 +17,7 @@ read table RM_Master;
 
 # Import overall forecasted demand for each store
 table Product_Demand "CSV" "Lab - Clean Forecasted Demand":
-    [Product_Num], D ~ Annual_Demand; # Indices already created for Product_Num
+    [Product_Num], D ~ Total shoe demand; # Indices already created for Product_Num
 read table Product_Demand;
 	
 
@@ -27,10 +27,10 @@ read table Machine_Assign;
 
 
 table BOM "CSV" "BOM.csv":
-    [Product_Num, RM_Num], q ~ Quantity;
+    [Product_Num, RM_Num], q ~ Quantity; # Indices already created for Product_Num and RM_Num
 read table BOM;
 
 table Warehouse_Master "CSV" "Warehouse_Master.csv":
-    WAREHOUSE_TYPE <- [Warehouse_Num], W ~ Capacity, c_l ~ Op_Cost;
+    WAREHOUSE_TYPE <- [Warehouse_Num], w ~ Capacity, c ~ Op_Cost;
 read table Warehouse_Master;
 	
