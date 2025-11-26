@@ -12,7 +12,7 @@ table Machine_Master "CSV" "Machine_Master.csv":
 read table Machine_Master;
 
 table RM_Master "CSV" "RM_Master.csv":
-    RAW_MATERIAL_TYPE <- [RM_Num], C_r ~ Cost;
+    RAW_MATERIAL_TYPE <- [RM_Num], C_r ~ Cost, Q_r ~ S_Quantity;
 read table RM_Master;
 
 # Import overall forecasted demand for each store

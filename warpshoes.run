@@ -7,7 +7,7 @@ option solve gurobi
 
 solve;
 
-display #insert variables that we want to display
-
+display Profit, x, z, y, s, demand_balance.dual, warehouse_capacity.dual, machine_time_availability.dual, raw_materials_budget.dual, raw_materials_availability.dual, #insert variables that we want to display
+demand_balance.slack, warehouse_capacity.slack, machine_time_availability.slack, raw_materials_budget.slack, raw_materials_availability.slack;
 # Printing the final result(s)
-printf "Objective Function Value %0.02f \n", Z;
+printf "Objective Function Value %0.02f \n", Profit;

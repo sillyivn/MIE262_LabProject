@@ -10,6 +10,7 @@ param P {SHOE_TYPE}; # Set of Selling Price Per Pair of Product i
 param D {SHOE_TYPE}; # Set of Forecasted Product Demands in February for Product i
 param C_r {RAW_MATERIAL_TYPE}; # Set of Costs per Unit of Raw Material 
 param A {RAW_MATERIAL_TYPE,SHOE_TYPE}; # Set of Units of Raw Material r to make 1 Pair of Product I
+param Q_r {RAW_MATERIAL_TYPE}; # Set of Total Raw Material Quantities
 param t {MACHINE_TYPE,SHOE_TYPE}; # Set of Processing Times on Machine M for 1 Pair of Product I
 param C_m {MACHINE_TYPE}; # Set of Operating Cost of Machine M for 1 Pair of Product I
 param C_w {WAREHOUSE_TYPE}; # Set of Warehouse Costs 
@@ -28,7 +29,6 @@ var z {WAREHOUSE_TYPE} binary; # binary variable to include warehouse i or not
 # Other Decision Variables 
 var y {SHOE_TYPE} >= 0, integer; # amount of unmet demand for each shoe
 var s {SHOE_TYPE} >= 0, integer; # number of shoes actually sold
-var I {SHOE_TYPE} >= 0, integer; # excess inventory at the end of February
 
 # Objective Function																 
 maximize Profit: 
@@ -42,8 +42,9 @@ sum{i in SHOE_TYPE} P[i]*s[i] # Revenue
 
 # Constraints
 subject to demand_balance {i in SHOE_TYPE}: s[i] + y[i] = D[i]; 
-subject to production_inventory_balance {i in SHOE_TYPE}: x[i] - s[i] = I[i]; 
-subject to warehouse_capacity {j in WAREHOUSE_TYPE}: sum{i in SHOE_TYPE} I[i] <= W[j] * z[j]; 
+subject to warehouse_capacity {j in WAREHOUSE_TYPE}: sum{i in SHOE_TYPE} x[i] <= W[j] * z[j]; 
 subject to machine_time_availability {m in MACHINE_TYPE}: sum {i in SHOE_TYPE} (t[m,i]/60) * x[i] <= T_avail;
 subject to raw_materials_budget: sum{r in RAW_MATERIAL_TYPE} C_r[r]* (sum {i in SHOE_TYPE} A[r,i] * x[i]) <= B;
+subject to raw_materials_availability {r in RAW_MATERIAL_TYPE}: (sum{i in SHOE_TYPE} A[r,i] * x[i]) <= Q_r[r];
+
 
