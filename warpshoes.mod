@@ -1,3 +1,6 @@
+#Sunny_Wu_wusunny1_1010978239
+#Ivan_Zhuo_zhuoiva1_1011039984
+
 # Indices for shoes, machines, raw materials, and warehouse,
 set SHOE_TYPE;              # Set of Shoe Type Indices
 set MACHINE_TYPE;         	# Set of Machine Type Indices

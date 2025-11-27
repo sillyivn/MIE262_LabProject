@@ -1,7 +1,10 @@
+#Sunny_Wu_wusunny1_1010978239
+#Ivan_Zhuo_zhuoiva1_1011039984
+
 # Read each relevant table into sets and parameters
 
 # [] represents the column you treat as an index 
-# _ ~ ___ represents the values at corresponding to index 
+# _ ~ ___ represents the values (assigned to a parameter) at corresponding index 
 
 table Shoe_Table "CSV" "Product_Master.csv":
     SHOE_TYPE <- [Product_Num], P ~ Sales_Price;
@@ -15,9 +18,9 @@ table RM_Master "CSV" "RM_Master.csv":
     RAW_MATERIAL_TYPE <- [RM_Num], C_r ~ Cost, Q_r ~ S_Quantity;
 read table RM_Master;
 
-# Import overall forecasted demand for each store
+# Import forecasted demand for each item
 table Product_Demand "CSV" "Lab - Clean Forecasted Demand":
-    SHOE_TYPE <- [Product_Num], D ~ "Total shoe demand"; 
+    SHOE_TYPE <- [Product_Num], D ~ Total_Shoe_Demand; 
 read table Product_Demand;
 	
 table Machine_Assign "CSV" "Machine_Assign.csv":

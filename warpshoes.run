@@ -1,13 +1,20 @@
+#Sunny_Wu_wusunny1_1010978239
+#Ivan_Zhuo_zhuoiva1_1011039984
+
 reset;
 
-model warpshoes.mod
-data warshoes.dat
+# import .mod and .dat files
+model warpshoes.mod;
+data warpshoes.dat;
 
-option solve gurobi
+# choose gurobi as the solving tool
+option solve gurobi;
 
+# solve the program
 solve;
 
-display Profit, x, z, y, s, demand_balance.dual, warehouse_capacity.dual, machine_time_availability.dual, raw_materials_budget.dual, raw_materials_availability.dual, #insert variables that we want to display
-demand_balance.slack, warehouse_capacity.slack, machine_time_availability.slack, raw_materials_budget.slack, raw_materials_availability.slack;
-# Printing the final result(s)
-printf "Objective Function Value %0.02f \n", Profit;
+# write profit, number of shoes produced, and which warehouses to open to an output file 
+display Profit, x, z > MIE262_project.out;
+
+# close output file
+close MIE262_project.out;
