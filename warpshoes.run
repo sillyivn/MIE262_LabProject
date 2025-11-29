@@ -8,13 +8,11 @@ model warpshoes.mod;
 data warpshoes.dat;
 
 # choose gurobi as the solving tool
-option solve gurobi;
+option solver gurobi;
 
 # solve the program
 solve;
 
+# round the OUTPUT x-values (not the x-values for calculations) to the nearest integer  
 # write profit, number of shoes produced, and which warehouses to open to an output file 
-display Profit, x, z > MIE262_project.out;
-
-# close output file
-close MIE262_project.out;
+display Profit, {i in SHOE_TYPE} (round(x[i]));, z > MIE262_project.out;
