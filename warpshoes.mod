@@ -29,10 +29,6 @@ param T_avail := 20160; # available run time per machine in February
 var x {SHOE_TYPE} >= 0; # number of shoes produced
 var z {WAREHOUSE_TYPE} binary; # binary variable to include warehouse i or not
 
-# Other Decision Variables. RELAX
-var y {SHOE_TYPE} >= 0; # amount of unmet demand for each shoe
-var s {SHOE_TYPE} >= 0; # number of shoes actually sold
-
 # Objective Function																 
 maximize Profit: (sum{i in SHOE_TYPE} P[i]*x[i]) # Revenue
 - (sum{r in RAW_MATERIAL_TYPE} C_r[r] * (sum{i in SHOE_TYPE} A[i,r] * x[i])) # Raw Material Cost
