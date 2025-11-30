@@ -9,25 +9,25 @@ set WAREHOUSE_TYPE;			# Set of Warehouse Type Indices
 
 # Parameters (could be thought of as sets associated with the sets above)
 # Make these "sets" dependent on the indices above 
-param P {SHOE_TYPE}; # Set of Selling Price Per Pair of Product i
-param D {SHOE_TYPE}; # Set of Forecasted Product Demands in February for Product i
-param C_r {RAW_MATERIAL_TYPE}; # Set of Costs per Unit of Raw Material 
-param A {SHOE_TYPE, RAW_MATERIAL_TYPE} default 0; # Set of Units of Raw Material r to make 1 Pair of Product I
-param Q_r {RAW_MATERIAL_TYPE}; # Set of Total Raw Material Quantities
-param t {SHOE_TYPE, MACHINE_TYPE} default 0; # Set of Processing Times on Machine M for 1 Pair of Product I
-param C_m {MACHINE_TYPE}; # Set of Operating Cost of Machine M for 1 Pair of Product I
-param C_w {WAREHOUSE_TYPE}; # Set of Warehouse Costs 
-param W {WAREHOUSE_TYPE}; # Set of Warehouse Capacities 
+param P {SHOE_TYPE}; # Selling Price Per Pair of Product i
+param D {SHOE_TYPE}; # Forecasted Product Demands in February for Product i
+param C_r {RAW_MATERIAL_TYPE}; # Costs per Unit of Raw Material r
+param A {SHOE_TYPE, RAW_MATERIAL_TYPE} default 0; # Units of Raw Material r to make 1 Pair of Product i
+param Q_r {RAW_MATERIAL_TYPE}; # Total Raw Material Quantities for Raw Material r
+param t {SHOE_TYPE, MACHINE_TYPE} default 0; # Processing Times on Machine m for 1 Pair of Product i
+param C_m {MACHINE_TYPE}; # Operating Costs of Machine m for 1 Pair of Product i
+param C_w {WAREHOUSE_TYPE}; # Warehouse Costs for Warehouse j
+param W {WAREHOUSE_TYPE}; # Warehouse Capacities for Warehouse j
 
-# Constant Parameters (not changing:
+# Constant Parameters (not changing)
 param s_p := 10; # shortage penalty
 param B := 10000000; # raw material budget
 param L := 25; # fixed labour rate
-param T_avail := 20160; # available run time per machine in February 
+param T_avail := 20160; # available run time per machine in February (in minutes)
  
-# Main Decision Variables. RELAX
-var x {SHOE_TYPE} >= 0; # number of shoes produced
-var z {WAREHOUSE_TYPE} binary; # binary variable to include warehouse i or not
+# Main Decision Variables. 
+var x {SHOE_TYPE} >= 0; # number of shoes produced for shoe i
+var z {WAREHOUSE_TYPE} binary; # binary variable to include warehouse j or not
 
 # Objective Function																 
 maximize Profit: (sum{i in SHOE_TYPE} P[i]*x[i]) # Revenue

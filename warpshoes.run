@@ -14,6 +14,6 @@ option solver gurobi;
 solve;
 
 # round the OUTPUT x-values (not the x-values for calculations) to the nearest integer  
-# write profit, number of shoes produced, and which warehouses to open to an output file 
+# write profit, number of shoes produced, and which warehouses should open to an output file 
 display Profit, {i in SHOE_TYPE} (round(x[i])), z > MIE262_project.out;
 
